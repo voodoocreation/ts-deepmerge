@@ -18,14 +18,17 @@ const obj1 = {
 
 const obj2 = {
   b: {
-    b: 2,
-    c: 2
+    a: 2,
+    b: 2
   }
 };
 
 const obj3 = {
   a: {
-    a: 3
+    b: 3
+  },
+  b: {
+    c: 3
   },
   c: 3
 };
@@ -37,12 +40,13 @@ The value of the above `result` is:
 ```json
 {
   "a": {
-    "a": 3,
-    "b": 2,
-    "c": 2
+    "a": 1,
+    "b": 3
   },
   "b": {
-    "b": 2
+    "a": 2,
+    "b": 2,
+    "c": 3
   },
   "c": 3
 }
