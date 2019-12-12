@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["dom", "esnext"],
+    "jsx": "react",
+    "strict": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "include": ["./global.d.ts", "./src/index.ts"],
+  "exclude": ["**/coverage/*", "**/dist/*", "**/node_modules/*"]
+}

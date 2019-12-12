@@ -1,0 +1,17 @@
+{
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "rules": {
+    "indent": [true, "spaces"],
+    "no-submodule-imports": [true, "lodash"],
+    "jsx-boolean-value": ["never"],
+    "no-implicit-dependencies": [true, "dev"],
+    "variable-name": {
+      "options": [
+        "ban-keywords",
+        "check-format",
+        "allow-leading-underscore",
+        "allow-pascal-case"
+      ]
+    }
+  }
+}

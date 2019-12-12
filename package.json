@@ -1,0 +1,49 @@
+{
+  "name": "ts-deepmerge",
+  "author": "Raice Hannay <voodoocreation@gmail.com>",
+  "description": "A TypeScript deep merge function.",
+  "license": "ISC",
+  "version": "1.0.0",
+  "keywords": [
+    "typescript",
+    "deep",
+    "merge",
+    "deepmerge",
+    "deep-merge",
+    "recursive",
+    "recursive-merge"
+  ],
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx}\"",
+    "lint": "tslint \"./{types,src,pages}/**/*.ts?(x)\"",
+    "test": "cross-env NODE_ENV=test jest --no-cache --config ./jest.config.js",
+    "test:all": "npm-run-all format typecheck lint test:coverage",
+    "test:coverage": "cross-env NODE_ENV=test jest --no-cache --coverage --config ./jest.config.js",
+    "typecheck": "tsc"
+  },
+  "prepublish": "tsc",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:voodoocreation/ts-deepmerge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voodoocreation/ts-deepmerge/issues"
+  },
+  "homepage": "https://github.com/voodoocreation/ts-deepmerge#readme",
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.3"
+  }
+}
