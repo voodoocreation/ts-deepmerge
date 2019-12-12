@@ -18,14 +18,14 @@ const obj1 = {
 
 const obj2 = {
   b: {
-    b: 2
+    b: 2,
+    c: 2
   }
 };
 
 const obj3 = {
   a: {
-    a: 3,
-    b: 3
+    a: 3
   },
   c: 3
 };
@@ -38,7 +38,8 @@ The value of the above `result` is:
 {
   "a": {
     "a": 3,
-    "b": 3
+    "b": 2,
+    "c": 2
   },
   "b": {
     "b": 2

@@ -3,7 +3,7 @@
   "author": "Raice Hannay <voodoocreation@gmail.com>",
   "description": "A TypeScript deep merge function.",
   "license": "ISC",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "typescript",
     "deep",
