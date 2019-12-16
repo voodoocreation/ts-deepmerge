@@ -17,6 +17,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["./global.d.ts", "./src/index.ts"],
+  "include": ["./src/index.ts"],
   "exclude": ["**/coverage/*", "**/dist/*", "**/node_modules/*"]
 }
