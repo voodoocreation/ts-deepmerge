@@ -8,7 +8,19 @@ type TUnionToIntersection<U> = (U extends any
   ? I
   : never;
 
-const isObject = (obj: any) => obj && typeof obj === "object";
+// istanbul ignore next
+const isObject = (obj: any) => {
+  if (typeof obj === "object" && obj !== null) {
+    if (typeof Object.getPrototypeOf === "function") {
+      const prototype = Object.getPrototypeOf(obj);
+      return prototype === Object.prototype || prototype === null;
+    }
+
+    return Object.prototype.toString.call(obj) === "[object Object]";
+  }
+
+  return false;
+};
 
 const merge = <T extends IObject[]>(
   ...objects: T

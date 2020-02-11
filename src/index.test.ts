@@ -3,6 +3,7 @@ import merge from "./index";
 describe("merge", () => {
   const object1 = {
     array: ["a"],
+    date: new Date("2020-01-01"),
     functions: {
       func1: () => "Object 1",
       func2: () => "Object 1"
@@ -37,6 +38,7 @@ describe("merge", () => {
 
   const object3 = {
     array: ["b", "c", "a"],
+    date: new Date("2020-01-02"),
     functions: {
       func2: () => "Object 3",
       func3: () => "Object 3"
@@ -89,5 +91,13 @@ describe("merge", () => {
     expect(object1).toEqual(object1Backup);
     expect(object2).toEqual(object2Backup);
     expect(object3).toEqual(object3Backup);
+  });
+
+  it("overrides date correctly", () => {
+    expect(result.date).toEqual(object3.date);
+  });
+
+  it("retains Date instance", () => {
+    expect(result.date instanceof Date).toBe(true);
   });
 });
