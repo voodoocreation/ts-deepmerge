@@ -6,18 +6,18 @@ describe("merge", () => {
     date: new Date("2020-01-01"),
     functions: {
       func1: () => "Object 1",
-      func2: () => "Object 1"
+      func2: () => "Object 1",
     },
     nest: {
       nest: {
         a: 1,
-        b: 2
-      }
+        b: 2,
+      },
     },
     object: {
       a: 1,
-      b: 2
-    }
+      b: 2,
+    },
   };
   const object1Backup = { ...object1 };
 
@@ -25,14 +25,14 @@ describe("merge", () => {
     nest: {
       nest: {
         b: 3,
-        d: 5
-      }
+        d: 5,
+      },
     },
     object: {
       b: undefined,
       c: 3,
-      d: 5
-    }
+      d: 5,
+    },
   };
   const object2Backup = { ...object2 };
 
@@ -41,16 +41,16 @@ describe("merge", () => {
     date: new Date("2020-01-02"),
     functions: {
       func2: () => "Object 3",
-      func3: () => "Object 3"
+      func3: () => "Object 3",
     },
     nest: {
       nest: {
-        c: 4
-      }
+        c: 4,
+      },
     },
     object: {
-      d: null
-    }
+      d: null,
+    },
   };
   const object3Backup = { ...object3 };
 
@@ -74,8 +74,8 @@ describe("merge", () => {
         a: 1,
         b: 3,
         c: 4,
-        d: 5
-      }
+        d: 5,
+      },
     });
   });
 
@@ -83,7 +83,7 @@ describe("merge", () => {
     expect(result.object).toEqual({
       a: 1,
       c: 3,
-      d: null
+      d: null,
     });
   });
 
