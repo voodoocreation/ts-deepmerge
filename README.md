@@ -4,6 +4,10 @@ TypeScript Deep Merge
 A deep merge function that automatically infers the return type based on your input,
 without mutating the source objects.
 
+Objects and arrays will be merged, but values such as numbers and strings will be overwritten.
+
+All merging/overwriting occurs in the order of the arguments you provide the function with.
+
 
 Usage
 -----
@@ -28,6 +32,7 @@ const obj3 = {
     b: 3
   },
   b: {
+    b: 3,
     c: 3
   },
   c: 3
@@ -45,7 +50,7 @@ The value of the above `result` is:
   },
   "b": {
     "a": 2,
-    "b": 2,
+    "b": 3,
     "c": 3
   },
   "c": 3
