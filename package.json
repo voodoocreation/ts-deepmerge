@@ -3,7 +3,7 @@
   "author": "Raice Hannay <voodoocreation@gmail.com>",
   "description": "A TypeScript deep merge function.",
   "license": "ISC",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "keywords": [
     "typescript",
     "deep",
@@ -36,18 +36,18 @@
   "homepage": "https://github.com/voodoocreation/ts-deepmerge#readme",
   "types": "dist/index.d.ts",
   "devDependencies": {
-    "@types/jest": "^26.0.14",
-    "@typescript-eslint/eslint-plugin": "^4.4.1",
-    "cross-env": "^7.0.2",
-    "eslint": "^7.11.0",
-    "eslint-config-voodoocreation": "^1.1.1",
+    "@types/jest": "^26.0.20",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.21.0",
+    "eslint-config-voodoocreation": "^1.2.0",
     "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jest": "^24.1.0",
-    "eslint-plugin-prefer-arrow": "^1.1.7",
-    "jest": "^26.5.3",
+    "eslint-plugin-jest": "^24.1.9",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "jest": "^26.6.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.0.2",
-    "ts-jest": "^26.4.1",
-    "typescript": "^4.0.3"
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.5.3",
+    "typescript": "^4.2.3"
   }
 }
