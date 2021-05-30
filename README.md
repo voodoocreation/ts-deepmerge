@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/v/ts-deepmerge)](https://www.npmjs.com/package/ts-deepmerge)
+
 TypeScript Deep Merge
 =====================
 
