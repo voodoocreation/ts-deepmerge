@@ -63,6 +63,8 @@ The value of the above `result` is:
 
 If you would like to provide options to change the merge behaviour, you can use the `.withOptions` method:
 ```typescript
+import merge from "ts-deepmerge";
+
 const obj1 = {
   array: ["A"],
 };
