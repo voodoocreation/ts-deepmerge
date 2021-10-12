@@ -28,7 +28,9 @@ const merge = <T extends IObject[]>(
   objects.reduce((result, current) => {
     Object.keys(current).forEach((key) => {
       if (Array.isArray(result[key]) && Array.isArray(current[key])) {
-        result[key] = Array.from(new Set(result[key].concat(current[key])));
+        result[key] = merge.options.mergeArrays
+          ? Array.from(new Set(result[key].concat(current[key])))
+          : current[key];
       } else if (isObject(result[key]) && isObject(current[key])) {
         result[key] = merge(result[key], current[key]);
       } else {
@@ -38,5 +40,31 @@ const merge = <T extends IObject[]>(
 
     return result;
   }, {}) as any;
+
+interface IOptions {
+  mergeArrays: boolean;
+}
+
+const defaultOptions: IOptions = {
+  mergeArrays: true,
+};
+
+merge.options = defaultOptions;
+
+merge.withOptions = <T extends IObject[]>(
+  options: Partial<IOptions>,
+  ...objects: T
+) => {
+  merge.options = {
+    mergeArrays: true,
+    ...options,
+  };
+
+  const result = merge(...objects);
+
+  merge.options = defaultOptions;
+
+  return result;
+};
 
 export default merge;

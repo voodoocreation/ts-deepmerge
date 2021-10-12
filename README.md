@@ -58,3 +58,29 @@ The value of the above `result` is:
   "c": 3
 }
 ```
+
+### With options
+
+If you would like to provide options to change the merge behaviour, you can use the `.withOptions` method:
+```typescript
+const obj1 = {
+  array: ["A"],
+};
+
+const obj2 = {
+  array: ["B"],
+}
+
+const result = merge.withOptions(
+  { mergeArrays: false },
+  obj1,
+  obj2
+);
+```
+
+The value of the above `result` is:
+```json
+{
+  "array": ["B"]
+}
+```

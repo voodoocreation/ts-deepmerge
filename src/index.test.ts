@@ -54,50 +54,75 @@ describe("merge", () => {
   };
   const object3Backup = { ...object3 };
 
-  const result = merge(object1, object2, object3);
+  describe("without options", () => {
+    const result = merge(object1, object2, object3);
 
-  it("merges arrays correctly", () => {
-    expect(result.array).toEqual(["a", "b", "c"]);
-  });
+    it("merges arrays correctly", () => {
+      expect(result.array).toEqual(["a", "b", "c"]);
+    });
 
-  it("merges objects with functions correctly", () => {
-    expect(Object.keys(result.functions)).toEqual(["func1", "func2", "func3"]);
+    it("merges objects with functions correctly", () => {
+      expect(Object.keys(result.functions)).toEqual([
+        "func1",
+        "func2",
+        "func3",
+      ]);
 
-    expect(result.functions.func1()).toBe("Object 1");
-    expect(result.functions.func2()).toBe("Object 3");
-    expect(result.functions.func3()).toBe("Object 3");
-  });
+      expect(result.functions.func1()).toBe("Object 1");
+      expect(result.functions.func2()).toBe("Object 3");
+      expect(result.functions.func3()).toBe("Object 3");
+    });
 
-  it("merges nested objects correctly", () => {
-    expect(result.nest).toEqual({
-      nest: {
+    it("merges nested objects correctly", () => {
+      expect(result.nest).toEqual({
+        nest: {
+          a: 1,
+          b: 3,
+          c: 4,
+          d: 5,
+        },
+      });
+    });
+
+    it("merges objects with undefined values correctly", () => {
+      expect(result.object).toEqual({
         a: 1,
-        b: 3,
-        c: 4,
-        d: 5,
+        c: 3,
+        d: null,
+      });
+    });
+
+    it("doesn't mutate the arguments", () => {
+      expect(object1).toEqual(object1Backup);
+      expect(object2).toEqual(object2Backup);
+      expect(object3).toEqual(object3Backup);
+    });
+
+    it("overrides date correctly", () => {
+      expect(result.date).toEqual(object3.date);
+    });
+
+    it("retains Date instance", () => {
+      expect(result.date instanceof Date).toBe(true);
+    });
+  });
+
+  describe("with options", () => {
+    const result = merge.withOptions(
+      {
+        mergeArrays: false,
       },
+      object1,
+      object2,
+      object3
+    );
+
+    it("doesn't merge arrays when mergeArrays is false", () => {
+      expect(result.array).toEqual(object3.array);
     });
-  });
 
-  it("merges objects with undefined values correctly", () => {
-    expect(result.object).toEqual({
-      a: 1,
-      c: 3,
-      d: null,
+    it("resets the options after calling it", () => {
+      expect(merge(object1, object2, object3).array).toEqual(["a", "b", "c"]);
     });
-  });
-
-  it("doesn't mutate the arguments", () => {
-    expect(object1).toEqual(object1Backup);
-    expect(object2).toEqual(object2Backup);
-    expect(object3).toEqual(object3Backup);
-  });
-
-  it("overrides date correctly", () => {
-    expect(result.date).toEqual(object3.date);
-  });
-
-  it("retains Date instance", () => {
-    expect(result.date instanceof Date).toBe(true);
   });
 });
