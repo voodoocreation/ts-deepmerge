@@ -1,5 +1,5 @@
 interface IObject {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 type TUnionToIntersection<U> = (
@@ -29,10 +29,10 @@ const merge = <T extends IObject[]>(
     Object.keys(current).forEach((key) => {
       if (Array.isArray(result[key]) && Array.isArray(current[key])) {
         result[key] = merge.options.mergeArrays
-          ? Array.from(new Set(result[key].concat(current[key])))
+          ? Array.from(new Set((result[key] as unknown[]).concat(current[key])))
           : current[key];
       } else if (isObject(result[key]) && isObject(current[key])) {
-        result[key] = merge(result[key], current[key]);
+        result[key] = merge(result[key] as IObject, current[key] as IObject);
       } else {
         result[key] = current[key];
       }
