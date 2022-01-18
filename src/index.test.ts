@@ -1,5 +1,10 @@
 import merge from "./index";
 
+interface INamedObject {
+  propertyA: string[];
+  propertyB: string;
+}
+
 describe("merge", () => {
   const object1 = {
     array: ["a"],
@@ -54,6 +59,11 @@ describe("merge", () => {
   };
   const object3Backup = { ...object3 };
 
+  const namedObject: INamedObject = {
+    propertyA: ["a", "b"],
+    propertyB: "propertyB",
+  };
+
   describe("without options", () => {
     const result = merge(object1, object2, object3);
 
@@ -104,6 +114,13 @@ describe("merge", () => {
 
     it("retains Date instance", () => {
       expect(result.date instanceof Date).toBe(true);
+    });
+
+    it("merges a named object", () => {
+      expect(merge(namedObject, { propertyB: "merged" })).toEqual({
+        propertyA: namedObject.propertyA,
+        propertyB: "merged",
+      });
     });
   });
 

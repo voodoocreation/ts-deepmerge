@@ -1,5 +1,6 @@
 interface IObject {
-  [key: string]: unknown;
+  [key: string]: any;
+  length?: never;
 }
 
 type TUnionToIntersection<U> = (
