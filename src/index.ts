@@ -23,7 +23,7 @@ const isObject = (obj: any) => {
   return false;
 };
 
-const PROTECTED_KEYS = ["__proto__"];
+const PROTECTED_KEYS = ["__proto__", "constructor", "prototype"];
 
 const merge = <T extends IObject[]>(
   ...objects: T
