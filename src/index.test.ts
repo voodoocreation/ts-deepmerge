@@ -142,4 +142,16 @@ describe("merge", () => {
       expect(merge(object1, object2, object3).array).toEqual(["a", "b", "c"]);
     });
   });
+
+  describe("reported vulnerabilities", () => {
+    it("safeguards against prototype pollution", () => {
+      const merged: any = merge(
+        {},
+        JSON.parse('{ "__proto__": { "hasProto": true } }')
+      );
+
+      // eslint-disable-next-line no-proto
+      expect(merged.__proto__.hasProto).toBe(undefined);
+    });
+  });
 });

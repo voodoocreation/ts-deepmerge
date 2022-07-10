@@ -23,11 +23,17 @@ const isObject = (obj: any) => {
   return false;
 };
 
+const PROTECTED_KEYS = ["__proto__"];
+
 const merge = <T extends IObject[]>(
   ...objects: T
 ): TUnionToIntersection<T[number]> =>
   objects.reduce((result, current) => {
     Object.keys(current).forEach((key) => {
+      if (PROTECTED_KEYS.includes(key)) {
+        return;
+      }
+
       if (Array.isArray(result[key]) && Array.isArray(current[key])) {
         result[key] = merge.options.mergeArrays
           ? Array.from(new Set((result[key] as unknown[]).concat(current[key])))

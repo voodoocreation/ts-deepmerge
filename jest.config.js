@@ -11,7 +11,7 @@ module.exports = {
   },
   globals: {
     "ts-jest": {
-      tsConfig: {
+      tsconfig: {
         target: "es6",
       },
     },
@@ -20,8 +20,8 @@ module.exports = {
   preset: "ts-jest",
   roots: ["<rootDir>/src"],
   testEnvironment: "jsdom",
+  testEnvironmentOptions: { url: "http://localhost" },
   testMatch: ["**/*.test.{ts,tsx}"],
-  testURL: "http://localhost",
   transformIgnorePatterns: ["/node_modules/.+\\.js$"],
   verbose: true,
 };
