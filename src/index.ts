@@ -1,6 +1,5 @@
 interface IObject {
   [key: string]: any;
-  length?: never;
 }
 
 type TUnionToIntersection<U> = (
@@ -29,6 +28,12 @@ const merge = <T extends IObject[]>(
   ...objects: T
 ): TUnionToIntersection<T[number]> =>
   objects.reduce((result, current) => {
+    if (Array.isArray(current)) {
+      throw new TypeError(
+        "Arguments provided to ts-deepmerge must be objects, not arrays."
+      );
+    }
+
     Object.keys(current).forEach((key) => {
       if (PROTECTED_KEYS.includes(key)) {
         return;

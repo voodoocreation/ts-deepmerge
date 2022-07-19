@@ -143,7 +143,19 @@ describe("merge", () => {
     });
   });
 
-  describe("reported vulnerabilities", () => {
+  describe("reported issues", () => {
+    it("can merge objects with array-like properties", () => {
+      expect(merge({ length: 1 }, { length: 2 })).toEqual({ length: 2 });
+    });
+
+    it("can't merge arrays when provided directly as args", () => {
+      expect(() => merge([1], [2])).toThrowError(
+        new TypeError(
+          "Arguments provided to ts-deepmerge must be objects, not arrays."
+        )
+      );
+    });
+
     it("safeguards against prototype pollution", () => {
       const merged: any = merge(
         {},
