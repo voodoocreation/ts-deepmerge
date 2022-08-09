@@ -22,8 +22,6 @@ const isObject = (obj: any) => {
   return false;
 };
 
-const PROTECTED_KEYS = ["__proto__", "constructor", "prototype"];
-
 const merge = <T extends IObject[]>(
   ...objects: T
 ): TUnionToIntersection<T[number]> =>
@@ -35,7 +33,7 @@ const merge = <T extends IObject[]>(
     }
 
     Object.keys(current).forEach((key) => {
-      if (PROTECTED_KEYS.includes(key)) {
+      if (["__proto__", "constructor", "prototype"].includes(key)) {
         return;
       }
 
