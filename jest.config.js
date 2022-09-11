@@ -9,19 +9,22 @@ module.exports = {
       statements: 100,
     },
   },
-  globals: {
-    "ts-jest": {
-      tsconfig: {
-        target: "es6",
-      },
-    },
-  },
   moduleDirectories: ["node_modules"],
-  preset: "ts-jest",
   roots: ["<rootDir>/src"],
   testEnvironment: "jsdom",
   testEnvironmentOptions: { url: "http://localhost" },
   testMatch: ["**/*.test.{ts,tsx}"],
+  transform: {
+    "^.+.tsx?$": [
+      "ts-jest",
+      {
+        tsconfig: {
+          sourceMap: true,
+          target: "es6",
+        },
+      },
+    ],
+  },
   transformIgnorePatterns: ["/node_modules/.+\\.js$"],
   verbose: true,
 };

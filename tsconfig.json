@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "declaration": true,
     "outDir": "./dist/",
-    "sourceMap": true,
+    "sourceMap": false,
     "module": "commonjs",
     "target": "es5",
     "lib": ["dom", "esnext"],
