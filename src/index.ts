@@ -1,12 +1,34 @@
-interface IObject {
-  [key: string]: any;
-}
+type TAllKeys<T> = T extends any ? keyof T : never;
 
-type TUnionToIntersection<U> = (
-  U extends any ? (k: U) => void : never
-) extends (k: infer I) => void
-  ? I
+type TIndexValue<T, K extends PropertyKey, D = never> = T extends any
+  ? K extends keyof T
+    ? T[K]
+    : D
   : never;
+
+type TPartialKeys<T, K extends keyof T> = Omit<T, K> &
+  Partial<Pick<T, K>> extends infer O
+  ? { [P in keyof O]: O[P] }
+  : never;
+
+type TFunction = (...a: any[]) => any;
+
+type TPrimitives =
+  | string
+  | number
+  | boolean
+  | bigint
+  | symbol
+  | Date
+  | TFunction;
+
+type TMerged<T> = [T] extends [Array<any>]
+  ? { [K in keyof T]: TMerged<T[K]> }
+  : [T] extends [TPrimitives]
+  ? T
+  : [T] extends [object]
+  ? TPartialKeys<{ [K in TAllKeys<T>]: TMerged<TIndexValue<T, K>> }, never>
+  : T;
 
 // istanbul ignore next
 const isObject = (obj: any) => {
@@ -22,9 +44,11 @@ const isObject = (obj: any) => {
   return false;
 };
 
-const merge = <T extends IObject[]>(
-  ...objects: T
-): TUnionToIntersection<T[number]> =>
+interface IObject {
+  [key: string]: any;
+}
+
+const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
   objects.reduce((result, current) => {
     if (Array.isArray(current)) {
       throw new TypeError(

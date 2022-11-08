@@ -72,18 +72,22 @@ describe("merge", () => {
     });
 
     it("merges objects with functions correctly", () => {
-      expect(Object.keys(result.functions)).toEqual([
-        "func1",
-        "func2",
-        "func3",
-      ]);
+      const { functions } = result;
 
-      expect(result.functions.func1()).toBe("Object 1");
-      expect(result.functions.func2()).toBe("Object 3");
-      expect(result.functions.func3()).toBe("Object 3");
+      expect(Object.keys(functions)).toEqual(["func1", "func2", "func3"]);
+
+      expect(functions.func1()).toBe("Object 1");
+      expect(functions.func2()).toBe("Object 3");
+      expect(functions.func3()).toBe("Object 3");
     });
 
     it("merges nested objects correctly", () => {
+      const { nest } = result.nest;
+
+      expect(nest.a).toBe(1);
+      expect(nest.b).toBe(3);
+      expect(nest.c).toBe(4);
+      expect(nest.d).toBe(5);
       expect(result.nest).toEqual({
         nest: {
           a: 1,
@@ -95,7 +99,12 @@ describe("merge", () => {
     });
 
     it("merges objects with undefined values correctly", () => {
-      expect(result.object).toEqual({
+      const { object } = result;
+
+      expect(object.a).toBe(1);
+      expect(object.c).toBe(3);
+      expect(object.d).toBe(null);
+      expect(object).toEqual({
         a: 1,
         c: 3,
         d: null,
@@ -117,10 +126,14 @@ describe("merge", () => {
     });
 
     it("merges a named object", () => {
-      expect(merge(namedObject, { propertyB: "merged" })).toEqual({
+      const obj = merge(namedObject, { propertyB: "merged" });
+
+      expect(obj).toEqual({
         propertyA: namedObject.propertyA,
         propertyB: "merged",
       });
+      expect(obj.propertyA).toBe(namedObject.propertyA);
+      expect(obj.propertyB).toBe("merged");
     });
   });
 
@@ -164,6 +177,25 @@ describe("merge", () => {
 
       // eslint-disable-next-line no-proto
       expect(merged.__proto__.hasProto).toBe(undefined);
+    });
+
+    it("can merge objects that use `as const`", () => {
+      const a = { a: { b: 1, c: "foo" } } as const;
+      const b = { a: { c: "bar" } } as const;
+
+      const result = merge(a, b);
+
+      expect(result.a.c).toBe("bar");
+    });
+
+    it("can merge objects that have inconsistent property value types", () => {
+      const a = { a: { b: "1" } };
+      const b = { a: { b: 1 } };
+      const result = merge(a, b);
+
+      const value = result.a.b;
+
+      expect(value).toBe(1);
     });
   });
 });
