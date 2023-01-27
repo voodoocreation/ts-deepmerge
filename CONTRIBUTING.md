@@ -9,7 +9,7 @@ With any changes, the unit tests must all pass with full coverage. Simply run `y
 before committing to ensure everything is ok.
 
 If you've added any additional logic, new unit tests must be added to cover the new code branches,
-following the conventions in [the existing tests](/src/index.test.ts).
+following the conventions in [the existing tests](/index.test.ts).
 
 These tests will also be run prior to merging + publishing new versions.
 

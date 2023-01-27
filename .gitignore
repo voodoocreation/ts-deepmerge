@@ -1,17 +1,22 @@
-# Logs
+#Logs
 logs
 *.log
 
 #project
 coverage
 dist
-lib
+./cjs
+./esm
+*.js
+*.d.ts
+*.tgz
+*.map
 
 #node
 node_modules
 npm-debug.log
 yarn.error.l
-*.tgz
+package-lock.json
 
 #IDEs
 .idea
@@ -27,9 +32,3 @@ yarn.error.l
 
 #git hooks
 pre-commit.sh
-
-#.teamcity
-.teamcity/target/
-.teamcity/.classpath
-.teamcity/.settings/
-.teamcity/.project

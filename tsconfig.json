@@ -1,22 +1,28 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "ES2015",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["DOM", "ESNext"],
     "declaration": true,
-    "outDir": "./dist/",
-    "sourceMap": false,
-    "module": "commonjs",
-    "target": "es5",
-    "lib": ["dom", "esnext"],
-    "jsx": "react",
-    "strict": true,
+    "rootDir": "./",
     "skipLibCheck": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "sourceMap": false,
     "noImplicitAny": true,
     "downlevelIteration": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["./src/index.ts"],
-  "exclude": ["**/coverage/*", "**/dist/*", "**/node_modules/*"]
+  "exclude": [
+    "**/coverage/*",
+    "**/node_modules/*",
+    "**/cjs/*",
+    "**/esm/*",
+    "**/*.d.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
 }

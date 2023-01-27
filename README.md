@@ -10,6 +10,8 @@ Objects and arrays will be merged, but values such as numbers and strings will b
 
 All merging/overwriting occurs in the order of the arguments you provide the function with.
 
+Both ESM and CommonJS are supported by this package.
+
 
 Usage
 -----
