@@ -2,7 +2,7 @@
   "name": "ts-deepmerge",
   "type": "module",
   "license": "ISC",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "scripts": {
     "clean": "rimraf ./{cjs,esm}/!(package.json)",
     "compile": "yarn clean && yarn compile:esm && yarn compile:cjs",
@@ -50,7 +50,7 @@
     "**/index.js",
     "**/*.d.ts"
   ],
-  "types": "dist/index.d.ts",
+  "types": "./cjs/index.d.ts",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "devDependencies": {
