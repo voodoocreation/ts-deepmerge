@@ -63,7 +63,11 @@ const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
 
       if (Array.isArray(result[key]) && Array.isArray(current[key])) {
         result[key] = merge.options.mergeArrays
-          ? Array.from(new Set((result[key] as unknown[]).concat(current[key])))
+          ? merge.options.uniqueArrayItems
+            ? Array.from(
+                new Set((result[key] as unknown[]).concat(current[key]))
+              )
+            : [...result[key], ...current[key]]
           : current[key];
       } else if (isObject(result[key]) && isObject(current[key])) {
         result[key] = merge(result[key] as IObject, current[key] as IObject);
@@ -76,11 +80,26 @@ const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
   }, {}) as any;
 
 interface IOptions {
+  /**
+   * When `true` it will merge array properties.
+   * When `false` it will replace array properties with the last instance entirely instead of merging their contents.
+   *
+   * Default: `true`
+   */
   mergeArrays: boolean;
+
+  /**
+   * When `true` it will ensure there are no duplicate array items.
+   * When `false` it will allow duplicates when merging arrays.
+   *
+   * Default: `true`
+   */
+  uniqueArrayItems: boolean;
 }
 
 const defaultOptions: IOptions = {
   mergeArrays: true,
+  uniqueArrayItems: true,
 };
 
 merge.options = defaultOptions;
@@ -90,7 +109,7 @@ merge.withOptions = <T extends IObject[]>(
   ...objects: T
 ) => {
   merge.options = {
-    mergeArrays: true,
+    ...defaultOptions,
     ...options,
   };
 

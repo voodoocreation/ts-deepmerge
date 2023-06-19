@@ -88,3 +88,5 @@ The value of the above `result` is:
   "array": ["B"]
 }
 ```
+
+All options have JSDoc descriptions [in its source](/index.ts#L82).

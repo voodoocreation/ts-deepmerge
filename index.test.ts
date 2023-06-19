@@ -138,21 +138,38 @@ describe("merge", () => {
   });
 
   describe("with options", () => {
-    const result = merge.withOptions(
-      {
-        mergeArrays: false,
-      },
-      object1,
-      object2,
-      object3
-    );
+    describe("uniqueArrayItems", () => {
+      const result = merge.withOptions(
+        {
+          uniqueArrayItems: false,
+        },
+        object1,
+        object2,
+        object3
+      );
 
-    it("doesn't merge arrays when mergeArrays is false", () => {
-      expect(result.array).toEqual(object3.array);
+      it("allows duplicates when uniqueArrayItems is false", () => {
+        expect(result.array).toEqual([...object1.array, ...object3.array]);
+      });
     });
 
-    it("resets the options after calling it", () => {
-      expect(merge(object1, object2, object3).array).toEqual(["a", "b", "c"]);
+    describe("mergeArrays", () => {
+      const result = merge.withOptions(
+        {
+          mergeArrays: false,
+        },
+        object1,
+        object2,
+        object3
+      );
+
+      it("doesn't merge arrays when mergeArrays is false", () => {
+        expect(result.array).toEqual(object3.array);
+      });
+
+      it("resets the options after calling it", () => {
+        expect(merge(object1, object2, object3).array).toEqual(["a", "b", "c"]);
+      });
     });
   });
 
