@@ -52,7 +52,7 @@ const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
   objects.reduce((result, current) => {
     if (Array.isArray(current)) {
       throw new TypeError(
-        "Arguments provided to ts-deepmerge must be objects, not arrays."
+        "Arguments provided to ts-deepmerge must be objects, not arrays.",
       );
     }
 
@@ -65,14 +65,19 @@ const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
         result[key] = merge.options.mergeArrays
           ? merge.options.uniqueArrayItems
             ? Array.from(
-                new Set((result[key] as unknown[]).concat(current[key]))
+                new Set((result[key] as unknown[]).concat(current[key])),
               )
             : [...result[key], ...current[key]]
           : current[key];
       } else if (isObject(result[key]) && isObject(current[key])) {
         result[key] = merge(result[key] as IObject, current[key] as IObject);
       } else {
-        result[key] = current[key];
+        result[key] =
+          current[key] === undefined
+            ? merge.options.allowUndefinedOverrides
+              ? current[key]
+              : result[key]
+            : current[key];
       }
     });
 
@@ -80,6 +85,14 @@ const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
   }, {}) as any;
 
 interface IOptions {
+  /**
+   * When `true`, values explicitly provided as `undefined` will override existing values, though properties that are simply omitted won't affect anything.
+   * When `false`, values explicitly provided as `undefined` won't override existing values.
+   *
+   * Default: `true`
+   */
+  allowUndefinedOverrides: boolean;
+
   /**
    * When `true` it will merge array properties.
    * When `false` it will replace array properties with the last instance entirely instead of merging their contents.
@@ -98,6 +111,7 @@ interface IOptions {
 }
 
 const defaultOptions: IOptions = {
+  allowUndefinedOverrides: true,
   mergeArrays: true,
   uniqueArrayItems: true,
 };

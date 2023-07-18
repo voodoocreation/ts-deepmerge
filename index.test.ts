@@ -138,6 +138,20 @@ describe("merge", () => {
   });
 
   describe("with options", () => {
+    describe("allowUndefinedOverrides", () => {
+      const result = merge.withOptions(
+        {
+          allowUndefinedOverrides: false,
+        },
+        { value: 1 },
+        { value: undefined },
+      );
+
+      it("doesn't overwrite with undefined values when allowUndefinedOverrides is false", () => {
+        expect(result.value).toBe(1);
+      });
+    });
+
     describe("uniqueArrayItems", () => {
       const result = merge.withOptions(
         {
@@ -145,7 +159,7 @@ describe("merge", () => {
         },
         object1,
         object2,
-        object3
+        object3,
       );
 
       it("allows duplicates when uniqueArrayItems is false", () => {
@@ -160,7 +174,7 @@ describe("merge", () => {
         },
         object1,
         object2,
-        object3
+        object3,
       );
 
       it("doesn't merge arrays when mergeArrays is false", () => {
@@ -181,15 +195,15 @@ describe("merge", () => {
     it("can't merge arrays when provided directly as args", () => {
       expect(() => merge([1], [2])).toThrowError(
         new TypeError(
-          "Arguments provided to ts-deepmerge must be objects, not arrays."
-        )
+          "Arguments provided to ts-deepmerge must be objects, not arrays.",
+        ),
       );
     });
 
     it("safeguards against prototype pollution", () => {
       const merged: any = merge(
         {},
-        JSON.parse('{ "__proto__": { "hasProto": true } }')
+        JSON.parse('{ "__proto__": { "hasProto": true } }'),
       );
 
       // eslint-disable-next-line no-proto
