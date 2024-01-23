@@ -782,7 +782,7 @@
     semver "^7.5.4"
     ts-api-utils "^1.0.1"
 
-"@typescript-eslint/parser@^6.1.0":
+"@typescript-eslint/parser@^6.19.1":
   version "6.19.1"
   resolved "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-6.19.1.tgz#68a87bb21afaf0b1689e9cdce0e6e75bc91ada78"
   integrity sha512-WEfX22ziAh6pRE9jnbkkLGp/4RhTpffr2ZK5bJ18M8mIfA8A+k97U9ZyaXCEJRlmMHh7R9MJZWXp/r73DzINVQ==
@@ -1493,9 +1493,9 @@ domexception@^4.0.0:
     webidl-conversions "^7.0.0"
 
 electron-to-chromium@^1.4.601:
-  version "1.4.642"
-  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.642.tgz#eb380fa8b58e515c641d642ba452fa2c453c2e4f"
-  integrity sha512-M4+u22ZJGpk4RY7tne6W+APkZhnnhmAH48FNl8iEFK2lEgob+U5rUQsIqQhvAwCXYpfd3H20pHK/ENsCvwTbsA==
+  version "1.4.643"
+  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.643.tgz#081a20c5534db91e66ef094f68624960f674768f"
+  integrity sha512-QHscvvS7gt155PtoRC0dR2ilhL8E9LHhfTQEq1uD5AL0524rBLAwpAREFH06f87/e45B9XkR6Ki5dbhbCsVEIg==
 
 emittery@^0.13.1:
   version "0.13.1"
@@ -1637,19 +1637,19 @@ eslint-config-airbnb-typescript@^17.1.0:
   dependencies:
     eslint-config-airbnb-base "^15.0.0"
 
-eslint-config-prettier@^8.8.0:
-  version "8.10.0"
-  resolved "https://registry.npmjs.org/eslint-config-prettier/-/eslint-config-prettier-8.10.0.tgz#3a06a662130807e2502fc3ff8b4143d8a0658e11"
-  integrity sha512-SM8AMJdeQqRYT9O9zguiruQZaN7+z+E4eAP9oiLNGKMtomwaB1E9dcgUD6ZAn/eQAb52USbvezbiljfZUhbJcg==
+eslint-config-prettier@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.npmjs.org/eslint-config-prettier/-/eslint-config-prettier-9.1.0.tgz#31af3d94578645966c082fcb71a5846d3c94867f"
+  integrity sha512-NSWl5BFQWEPi1j4TjVNItzYV7dZXZ+wP6I6ZhrBGpChQhZRUaElihE9uRRkcbRnNb76UMKDF3r+WTmNcGPKsqw==
 
-eslint-config-voodoocreation@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/eslint-config-voodoocreation/-/eslint-config-voodoocreation-4.0.0.tgz#352b2ed0c7af7ffca14dc3bd3bbe5e02cefca76f"
-  integrity sha512-WgMG1HCZZpEUaKPISPLqpbYjdaE3LFSTdlEk8zDO1lKC/ssbUn9voeSxE6maZqGbVHVQWmMCJEQSiiUxEjBkAw==
+eslint-config-voodoocreation@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/eslint-config-voodoocreation/-/eslint-config-voodoocreation-5.0.0.tgz#a470a0efc2fd9709ed6dd295c3e81e95a0528bc6"
+  integrity sha512-RUF6xm0rEgnvrEe+GZjBVudvf9yJZylANpLXcqQQucuMuNjC4qHDQaTwe80qq6CuTfDS0NaCNftzcTPoXuZKhA==
   dependencies:
-    "@typescript-eslint/parser" "^6.1.0"
+    "@typescript-eslint/parser" "^6.19.1"
     eslint-config-airbnb-typescript "^17.1.0"
-    eslint-config-prettier "^8.8.0"
+    eslint-config-prettier "^9.1.0"
 
 eslint-import-resolver-node@^0.3.9:
   version "0.3.9"

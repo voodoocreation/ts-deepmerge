@@ -48,7 +48,7 @@ interface IObject {
   [key: string]: any;
 }
 
-const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
+export const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
   objects.reduce((result, current) => {
     if (Array.isArray(current)) {
       throw new TypeError(
@@ -133,5 +133,3 @@ merge.withOptions = <T extends IObject[]>(
 
   return result;
 };
-
-export default merge;

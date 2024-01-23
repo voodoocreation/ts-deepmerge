@@ -1,4 +1,4 @@
-import merge from "./index.js";
+import { merge } from "./index.js";
 
 interface INamedObject {
   propertyA: string[];

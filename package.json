@@ -2,7 +2,7 @@
   "name": "ts-deepmerge",
   "type": "module",
   "license": "ISC",
-  "version": "6.2.1",
+  "version": "7.0.0",
   "scripts": {
     "clean": "rimraf ./{cjs,esm}/!(package.json)",
     "compile": "yarn clean && yarn compile:esm && yarn compile:cjs",
@@ -60,7 +60,7 @@
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
-    "eslint-config-voodoocreation": "^4.0.0",
+    "eslint-config-voodoocreation": "^5.0.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^27.6.3",
     "eslint-plugin-prefer-arrow": "^1.2.3",

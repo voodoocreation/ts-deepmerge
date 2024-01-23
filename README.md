@@ -16,7 +16,7 @@ Both ESM and CommonJS are supported by this package.
 Usage
 -----
 ```typescript jsx
-import merge from "ts-deepmerge";
+import { merge } from "ts-deepmerge";
 
 const obj1 = {
   a: {
@@ -65,7 +65,7 @@ The value of the above `result` is:
 
 If you would like to provide options to change the merge behaviour, you can use the `.withOptions` method:
 ```typescript
-import merge from "ts-deepmerge";
+import { merge } from "ts-deepmerge";
 
 const obj1 = {
   array: ["A"],
