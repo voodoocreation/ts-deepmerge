@@ -14,7 +14,7 @@
     "noImplicitAny": true,
     "downlevelIteration": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
   },
   "exclude": [
     "**/coverage/*",
@@ -23,6 +23,6 @@
     "**/esm/*",
     "**/*.d.ts",
     "**/*.test.ts",
-    "**/*.test.tsx"
-  ]
+    "**/*.test.tsx",
+  ],
 }
