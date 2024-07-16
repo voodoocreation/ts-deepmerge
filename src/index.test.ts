@@ -1,4 +1,4 @@
-import { merge } from "./index.js";
+import { merge } from "./index";
 
 interface INamedObject {
   propertyA: string[];
@@ -206,7 +206,6 @@ describe("merge", () => {
         JSON.parse('{ "__proto__": { "hasProto": true } }'),
       );
 
-      // eslint-disable-next-line no-proto
       expect(merged.__proto__.hasProto).toBe(undefined);
     });
 

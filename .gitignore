@@ -5,9 +5,8 @@ logs
 #project
 coverage
 dist
-./cjs
-./esm
-*.js
+cjs
+esm
 *.d.ts
 *.tgz
 *.map

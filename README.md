@@ -89,7 +89,7 @@ The value of the above `result` is:
 }
 ```
 
-All options have JSDoc descriptions [in its source](/index.ts#L82).
+All options have JSDoc descriptions [in its source](/src/index.ts#L82).
 
 
 ### When working with generic declared types/interfaces
