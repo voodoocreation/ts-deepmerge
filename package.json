@@ -2,7 +2,7 @@
   "name": "ts-deepmerge",
   "type": "module",
   "license": "ISC",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "scripts": {
     "clean": "rimraf ./{cjs,esm}/!(package.json)",
     "compile": "yarn clean && yarn compile:esm && yarn compile:cjs",
@@ -55,19 +55,19 @@
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "concurrently": "^8.2.2",
+    "@types/jest": "^29.5.14",
+    "concurrently": "^9.1.0",
     "cross-env": "^7.0.3",
-    "eslint": "^9.7.0",
-    "eslint-config-voodoocreation": "^6.0.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jest": "^28.6.0",
+    "eslint": "^9.15.0",
+    "eslint-config-voodoocreation": "^7.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^28.9.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
-    "ts-jest": "^29.2.2",
-    "typescript": "^5.5.3"
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.3"
   }
 }
