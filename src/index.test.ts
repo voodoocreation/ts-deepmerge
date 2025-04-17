@@ -135,6 +135,13 @@ describe("merge", () => {
       expect(obj.propertyA).toBe(namedObject.propertyA);
       expect(obj.propertyB).toBe("merged");
     });
+
+    it('dereferences nested objects even if there was no merge', () => {
+        const obj1 = { a: { z: 'z' } };
+        const dereferenced = merge(obj1, {});
+        expect(dereferenced).not.toBe(obj1);
+        expect(dereferenced.a).not.toBe(obj1.a);
+    });
   });
 
   describe("with options", () => {
