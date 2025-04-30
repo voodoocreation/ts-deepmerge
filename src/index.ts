@@ -51,7 +51,7 @@ interface IObject {
 export const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
   objects.reduce((result, current) => {
     if (current === undefined) {
-        return result;
+      return result;
     }
 
     if (Array.isArray(current)) {
@@ -73,8 +73,10 @@ export const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
               )
             : [...result[key], ...current[key]]
           : current[key];
-      } else if (isObject(result[key]) || isObject(current[key])) {
+      } else if (isObject(result[key]) && isObject(current[key])) {
         result[key] = merge(result[key] as IObject, current[key] as IObject);
+      } else if (!isObject(result[key]) && isObject(current[key])) {
+        result[key] = merge(current[key], undefined);
       } else {
         result[key] =
           current[key] === undefined

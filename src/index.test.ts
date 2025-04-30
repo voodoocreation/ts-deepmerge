@@ -136,11 +136,21 @@ describe("merge", () => {
       expect(obj.propertyB).toBe("merged");
     });
 
-    it('dereferences nested objects even if there was no merge', () => {
-        const obj1 = { a: { z: 'z' } };
-        const dereferenced = merge(obj1, {});
-        expect(dereferenced).not.toBe(obj1);
-        expect(dereferenced.a).not.toBe(obj1.a);
+    it('dereferences nested objects even if merging with `undefined`', () => {
+      const obj1 = { a: { z: 'z' } };
+      const dereferenced = merge(obj1, {});
+      expect(dereferenced).not.toBe(obj1);
+      expect(dereferenced).toEqual(obj1);
+      expect(dereferenced.a).not.toBe(obj1.a);
+    });
+
+    it('dereferences nested objects if merging with non-object type', () => {
+      const obj1 = { a: 'z' };
+      const obj2 = { a: { z: 'z' } };
+      const dereferenced = merge(obj1, obj2);
+      expect(dereferenced.a).not.toBe(obj1.a);
+      expect(dereferenced.a).not.toBe(obj2.a);
+      expect(dereferenced).toEqual({ a: { z: 'z' } });
     });
   });
 
