@@ -2,7 +2,7 @@
   "name": "ts-deepmerge",
   "type": "module",
   "license": "ISC",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "scripts": {
     "clean": "rimraf ./{cjs,esm}/!(package.json)",
     "compile": "yarn clean && yarn compile:esm && yarn compile:cjs",
