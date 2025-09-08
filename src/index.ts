@@ -61,7 +61,7 @@ export const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
     }
 
     Object.keys(current).forEach((key) => {
-      if (["__proto__", "constructor", "prototype"].includes(key)) {
+      if (!merge.options.mergeProtectedKeys && ["__proto__", "constructor", "prototype"].includes(key)) {
         return;
       }
 
@@ -114,12 +114,19 @@ interface IOptions {
    * Default: `true`
    */
   uniqueArrayItems: boolean;
+
+  /**
+   * When `true` it will merge protected keys like `__proto__`, `constructor` and `prototype`,
+   * that would otherwise be ignored.
+   */
+  mergeProtectedKeys: boolean
 }
 
 const defaultOptions: IOptions = {
   allowUndefinedOverrides: true,
   mergeArrays: true,
   uniqueArrayItems: true,
+  mergeProtectedKeys: false,
 };
 
 merge.options = defaultOptions;
