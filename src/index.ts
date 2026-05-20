@@ -60,11 +60,23 @@ export const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
       );
     }
 
+    const UNSAFE_KEYS = new Set([
+      "__proto__",
+      "constructor",
+      "prototype",
+      "toString",
+      "valueOf",
+      "hasOwnProperty",
+      "isPrototypeOf",
+      "propertyIsEnumerable",
+      "toLocaleString",
+    ]);
+
     Object.keys(current).forEach((key) => {
-      if (["__proto__", "constructor", "prototype"].includes(key)) {
+      if (UNSAFE_KEYS.has(key)) {
         return;
       }
-
+  
       if (Array.isArray(result[key]) && Array.isArray(current[key])) {
         result[key] = merge.options.mergeArrays
           ? merge.options.uniqueArrayItems
