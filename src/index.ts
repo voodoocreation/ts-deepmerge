@@ -44,6 +44,19 @@ const isObject = (obj: any) => {
   return false;
 };
 
+const UNSAFE_KEYS = new Set([
+  "__proto__",
+  "constructor",
+  "prototype",
+  "toString",
+  "valueOf",
+  "hasOwnProperty",
+  "isPrototypeOf",
+  "propertyIsEnumerable",
+  "toLocaleString",
+]);
+
+
 interface IObject {
   [key: string]: any;
 }
@@ -59,18 +72,6 @@ export const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
         "Arguments provided to ts-deepmerge must be objects, not arrays.",
       );
     }
-
-    const UNSAFE_KEYS = new Set([
-      "__proto__",
-      "constructor",
-      "prototype",
-      "toString",
-      "valueOf",
-      "hasOwnProperty",
-      "isPrototypeOf",
-      "propertyIsEnumerable",
-      "toLocaleString",
-    ]);
 
     Object.keys(current).forEach((key) => {
       if (UNSAFE_KEYS.has(key)) {
