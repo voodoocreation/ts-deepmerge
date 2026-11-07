@@ -141,14 +141,15 @@ merge.withOptions = <T extends IObject[]>(
   options: Partial<IOptions>,
   ...objects: T
 ) => {
+  const previousOptions = merge.options;
   merge.options = {
     ...defaultOptions,
     ...options,
   };
 
-  const result = merge(...objects);
-
-  merge.options = defaultOptions;
-
-  return result;
+  try {
+    return merge(...objects);
+  } finally {
+    merge.options = previousOptions;
+  }
 };
