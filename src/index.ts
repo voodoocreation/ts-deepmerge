@@ -78,25 +78,27 @@ export const merge = <T extends IObject[]>(...objects: T): TMerged<T[number]> =>
         return;
       }
   
-      if (Array.isArray(result[key]) && Array.isArray(current[key])) {
+      const value = current[key];
+
+      if (Array.isArray(result[key]) && Array.isArray(value)) {
         result[key] = merge.options.mergeArrays
           ? merge.options.uniqueArrayItems
             ? Array.from(
-                new Set((result[key] as unknown[]).concat(current[key])),
+                new Set((result[key] as unknown[]).concat(value)),
               )
-            : [...result[key], ...current[key]]
-          : current[key];
-      } else if (isObject(result[key]) && isObject(current[key])) {
-        result[key] = merge(result[key] as IObject, current[key] as IObject);
-      } else if (!isObject(result[key]) && isObject(current[key])) {
-        result[key] = merge(current[key], undefined);
+            : [...result[key], ...value]
+          : value;
+      } else if (isObject(result[key]) && isObject(value)) {
+        result[key] = merge(result[key] as IObject, value as IObject);
+      } else if (!isObject(result[key]) && isObject(value)) {
+        result[key] = merge(value, undefined);
       } else {
         result[key] =
-          current[key] === undefined
+          value === undefined
             ? merge.options.allowUndefinedOverrides
-              ? current[key]
+              ? value
               : result[key]
-            : current[key];
+            : value;
       }
     });
 
